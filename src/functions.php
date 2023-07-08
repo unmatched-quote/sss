@@ -78,6 +78,26 @@ function modulo_via_prime(int $number, int $prime): string
     return ($modulo < 0) ? bcadd($modulo, $prime) : $modulo;
 }
 
+function inverse_modulo_via_prime(int $number, int $prime): string
+{
+    $mod = bcmod($number, $prime);
+    $r = greatest_common_divisor($prime, abs($mod));
+    $r = ($mod < 0) ? -$r[2] : $r[2];
+
+    return bcmod(bcadd($prime, $r), $prime);
+}
+
+function greatest_common_divisor(int $a, string $b): array
+{
+    if($b === '0') return [$a, 1, 0];
+
+    $div    = floor(bcdiv($a, $b));
+    $mod    = bcmod($a, $b);
+    $decomp = greatest_common_divisor($b, $mod);
+
+    return [$decomp[0], $decomp[2], $decomp[1] - $decomp[2] * $div];
+}
+
 function get_max_key_length(int $bytes, string $decimals = Constants::DECIMAL, string $alphabet = Constants::ALPHABET): int
 {
     $max = bcpow(2, $bytes * 8);
