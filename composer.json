@@ -1,0 +1,28 @@
+{
+    "name": "just-some-code/sss",
+    "description": "Shamir Secret Sharing",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nikola B.",
+            "email": "nikola.bursac@proton.me"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "JustSomeCode\\ShamirSecretSharing\\": "src/"
+        },
+        "files": [
+            "src/functions.php"
+        ]
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^8.2",
+        "ext-bcmath": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.2",
+        "phpstan/phpstan": "^1.10"
+    }
+}
